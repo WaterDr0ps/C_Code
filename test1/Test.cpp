@@ -177,3 +177,21 @@ int main() {
 	PrintList(L);
 }
 */
+
+//数组nums包含从0到n的所有整数，但是其中缺了一个。请代码编写缺失的整数。在O(n)时间内完成
+int main() {
+	int nums[] = { 3,0,5,1,2 };
+	int arr[6];
+	int numsSize = sizeof(nums) / sizeof(int);
+	for (int i = 0;i <= numsSize;i++) {
+		arr[i] = i;
+	}
+	int a = 0;
+	for (int i = 0;i < numsSize;i++) {
+		a = a ^ nums[i];
+	}
+	for (int i = 0;i <= numsSize;i++) {
+		a = a ^ arr[i];
+	}
+	printf("%d\n", a);
+}
