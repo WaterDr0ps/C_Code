@@ -19,4 +19,5 @@ test1/.vs/DataStructure/v16/.suo
 *.obj
 *.idb
 *.pdb
-test1/.vs/DataStructure/v16
+*.test1/.vs/DataStructure/v16
+*.x64/Debug
