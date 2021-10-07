@@ -178,7 +178,89 @@ int main() {
 }
 */
 
+
+typedef struct {
+	int* elem;
+	int length;
+	int listSize;
+}SqList;
+//数组赋值
+void initArray(int arr[], int n) {
+	for (int i = 0;i < n;i++) {
+		scanf("%d", &arr[i]);
+	}
+}
+//初始化线性表
+void initList(SqList& L) {
+	L.length = 0;
+	L.listSize = 50;
+	L.elem = (int*)malloc(L.listSize * sizeof(int));
+}
+//给线性表赋数组中的值
+void createList(SqList& L,int arr[], int n) {
+	for (int i = 0;i < n;i++) {
+		L.elem[i]=arr[i];
+		L.length++;
+	}
+}
+//得到表中i的值
+int getList(SqList& L, int i) {
+	return L.elem[i - 1];
+}
+//打印线性表
+void printList(SqList& L) {
+	for (int i = 0;i < L.length;i++) {
+		printf("%d ", L.elem[i]);
+	}
+}
+//线性表插入值，且长度+1
+void insertList(SqList& L,int n,int input) {
+	for (int i = L.length;i >= n;i--) {
+		L.elem[i] = L.elem[i - 1];
+	}
+	L.elem[n] = input;
+	L.length++;
+}
+//该方法是新建C表=A表-B表
+void getNewList_Sub(SqList& A,SqList& B,SqList& C){
+	for (int i = 0;i < A.length;i++) {
+		C.elem[i] = A.elem[i] - B.elem[i];
+		C.length++;
+	}
+}
+//该方法是将B表并到A表中,且A，B表均为升序
+void listBtoA(SqList& A, SqList& B) {
+	int i = 0;
+	int increment = 0;//用于记录A表增加长度时的增量
+	int flag = 0;
+	while (flag!=5) {
+		if (B.elem[i] < A.elem[i+increment]) {
+			insertList(A, i+increment, B.elem[i]);
+			flag++;
+			increment++;
+		}else{
+			insertList(A, i + 1+increment, B.elem[i]);
+			flag++;
+			increment++;
+		}
+		i++;
+	}
+}
+int main() {
+	SqList ListA, ListB, ListC;
+	int A[5], B[5];
+	initArray(A, 5);initArray(B, 5);
+	initList(ListA);initList(ListB);initList(ListC);
+	createList(ListA, A, 5);createList(ListB, B, 5);
+	/*getNewList_Sub(ListA, ListB, ListC);
+	printList(ListC);*/
+	listBtoA(ListA, ListB);
+	printList(ListA);
+}
+
+
 //数组nums包含从0到n的所有整数，但是其中缺了一个。请代码编写缺失的整数。在O(n)时间内完成
+/*
 int main() {
 	int nums[] = { 3,0,5,1,2 };
 	int arr[6];
@@ -195,3 +277,7 @@ int main() {
 	}
 	printf("%d\n", a);
 }
+*/
+
+
+

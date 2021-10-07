@@ -6,3 +6,16 @@ test1/x64/Debug/projects.exe
 *.pdb
 *.obj
 *.idb
+test1/.vs/DataStructure/v16/.suo
+*.db
+*.db-shm
+*.db-wal
+*.opendb
+test1/.vs/DataStructure/v16/.suo
+*.db
+*.exe
+*.ilk
+*.pdb
+*.obj
+*.idb
+*.pdb
