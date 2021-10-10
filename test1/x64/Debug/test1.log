@@ -1,3 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(test1.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
   Test.cpp
-  test1.vcxproj -> C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\projects.exe
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(307,20): error C2664: “void insertList(SListNode **,int)”: 无法将参数 1 从“SListNode *”转换为“SListNode **”
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(307,13): message : 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(291,6): message : 参见“insertList”的声明

@@ -1,7 +1,8 @@
 #pragma warning(disable:6031)
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
-#include<malloc.h>
+#include<stdlib.h>
+#include<conio.h>
 
 //comlpex 复数四则运算
 /*
@@ -178,7 +179,8 @@ int main() {
 }
 */
 
-
+//线性表两个练习
+/*
 typedef struct {
 	int* elem;
 	int length;
@@ -252,12 +254,12 @@ int main() {
 	initArray(A, 5);initArray(B, 5);
 	initList(ListA);initList(ListB);initList(ListC);
 	createList(ListA, A, 5);createList(ListB, B, 5);
-	/*getNewList_Sub(ListA, ListB, ListC);
-	printList(ListC);*/
+	getNewList_Sub(ListA, ListB, ListC);
+	printList(ListC);
 	listBtoA(ListA, ListB);
 	printList(ListA);
 }
-
+*/
 
 //数组nums包含从0到n的所有整数，但是其中缺了一个。请代码编写缺失的整数。在O(n)时间内完成
 /*
@@ -278,6 +280,30 @@ int main() {
 	printf("%d\n", a);
 }
 */
+ 
 
 
+typedef struct SListNode {
+	int data;
+	struct SListNode* next=NULL;
+}SListNode;
+
+void insertList(SListNode** phead, int x) {
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	newNode->data = x;
+	newNode->next = NULL;
+	
+}
+void prinfList(SListNode* phead) {
+	SListNode* cur = phead;
+	while(cur!= NULL) {
+		printf("%d ", cur->data);
+		cur = cur->next;
+	}
+}
+
+int main() {
+	SListNode* LNode = NULL;
+	insertList(LNode,1);
+}
 
