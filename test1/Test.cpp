@@ -285,25 +285,71 @@ int main() {
 
 typedef struct SListNode {
 	int data;
-	struct SListNode* next=NULL;
+	struct SListNode* next;
 }SListNode;
 
-void insertList(SListNode** phead, int x) {
+SListNode* createSListNode(int x) {
 	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	if (newNode == NULL) {
+		printf("ÉêÇëÊ§°Ü");
+		exit(-1);
+	}
 	newNode->data = x;
 	newNode->next = NULL;
-	
+	return newNode;
 }
-void prinfList(SListNode* phead) {
-	SListNode* cur = phead;
-	while(cur!= NULL) {
-		printf("%d ", cur->data);
-		cur = cur->next;
+
+void insertSListBack(SListNode** pphead, int x) {
+	SListNode* newNode = createSListNode(x);
+	if (*pphead == NULL) {
+		*pphead = newNode;
+	}
+	else {
+		SListNode* cur = *pphead;
+		while (cur->next != NULL) {
+			cur = cur->next;
+		}
+		cur->next = newNode;
 	}
 }
 
+void delSListBack(SListNode** pphead) {
+	SListNode* cur = *pphead;
+	SListNode* bef=*pphead;
+	if (*pphead == NULL) {
+		printf("ÕâÊÇ¿Õ±í");
+		exit(1);
+	}else {
+		while (true) {
+			if (cur->next != NULL) {
+				bef = cur;
+				cur = cur->next;
+			}else{
+				free(cur);
+				bef->next = NULL;
+				break;
+			}
+		}
+
+	}
+}
+
+void printSList(SListNode* phead) {
+	SListNode* cur = phead;
+	while (cur != NULL) {
+		printf("%d->", cur->data);
+		cur = cur->next;
+	}
+	printf("NULL\n");
+}
+
 int main() {
-	SListNode* LNode = NULL;
-	insertList(LNode,1);
+	SListNode* sList = NULL;
+	insertSListBack(&sList, 1);
+	insertSListBack(&sList, 2);
+	insertSListBack(&sList, 3);
+	printSList(sList);
+	delSListBack(&sList);
+	printSList(sList);
 }
 
