@@ -281,13 +281,13 @@ int main() {
 }
 */
  
-
-
+//单链表增删查改
+/*
 typedef struct SListNode {
 	int data;
 	struct SListNode* next;
 }SListNode;
-
+//开辟一个新节点，并赋值x，返回SListNode*型
 SListNode* createSListNode(int x) {
 	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
 	if (newNode == NULL) {
@@ -298,7 +298,7 @@ SListNode* createSListNode(int x) {
 	newNode->next = NULL;
 	return newNode;
 }
-
+//在链表尾插入x（二级指针接收SListNode*类型的地址，地址传递)
 void insertSListBack(SListNode** pphead, int x) {
 	SListNode* newNode = createSListNode(x);
 	if (*pphead == NULL) {
@@ -312,7 +312,7 @@ void insertSListBack(SListNode** pphead, int x) {
 		cur->next = newNode;
 	}
 }
-
+//删除链表中最后一个节点（二级指针接收SListNode*类型的地址，地址传递)
 void delSListBack(SListNode** pphead) {
 	SListNode* cur = *pphead;
 	SListNode* bef=*pphead;
@@ -333,7 +333,45 @@ void delSListBack(SListNode** pphead) {
 
 	}
 }
-
+//查找链表中x的位序
+void locateSList(SListNode* phead, int x) {
+	int pos = 0;
+	if (phead == NULL) {
+		printf("这是一个空表\n");
+		exit(1);
+	}
+	else {
+		while (phead != NULL) {
+			if (phead->data == x) {
+				printf("找到了，位序是:%d\n",x);
+				break;
+			}
+			pos++;
+			phead = phead->next;
+		}
+		printf("没有找到该数\n");
+	}
+}
+//更改链表中pos位序的值，赋值x（二级指针接收SListNode*类型的地址，地址传递)
+void modifySList(SListNode** pphead, int pos, int x) {
+	SListNode* cur = *pphead;
+	int curPos = 1;
+	if (*pphead == NULL) {
+		printf("这是一个空表\n");
+		exit(1);
+	}
+	else {
+		while (cur != NULL) {
+			if (curPos == pos) {
+				cur->data = x;
+				break;
+			}
+			curPos++;
+			cur = cur->next;
+		}
+	}
+}
+//遍历数组
 void printSList(SListNode* phead) {
 	SListNode* cur = phead;
 	while (cur != NULL) {
@@ -348,8 +386,7 @@ int main() {
 	insertSListBack(&sList, 1);
 	insertSListBack(&sList, 2);
 	insertSListBack(&sList, 3);
-	printSList(sList);
-	delSListBack(&sList);
+	locateSList(sList, 5);
 	printSList(sList);
 }
-
+*/
