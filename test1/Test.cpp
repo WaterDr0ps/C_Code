@@ -312,6 +312,29 @@ void insertSListBack(SListNode** pphead, int x) {
 		cur->next = newNode;
 	}
 }
+//在链表中间\头插入x
+void insertSListMid(SListNode** pphead, int pos, int x) {
+	SListNode* prev = NULL;
+	SListNode* cur = *pphead;
+	SListNode* newNode = createSListNode(x);
+	int count = 2;
+	while (cur != NULL) {
+		//在第一个元素插的情况，新节点为新的头结点
+		if (pos == 1) {
+			*pphead = newNode;
+			newNode->next = cur;
+			break;
+		}
+		prev = cur;
+		cur = cur->next;
+		if (pos == count) {
+			prev->next = newNode;
+			newNode->next = cur;
+			break;
+		}
+		count++;
+	}
+}
 //删除链表中最后一个节点（二级指针接收SListNode*类型的地址，地址传递)
 void delSListBack(SListNode** pphead) {
 	SListNode* cur = *pphead;
@@ -330,7 +353,30 @@ void delSListBack(SListNode** pphead) {
 				break;
 			}
 		}
-
+	}
+}
+//删除链表中pos位序的节点
+void delSListMid(SListNode** pphead,int pos) {
+	SListNode* prev = NULL;
+	SListNode* tail = *pphead;
+	int count = 2;
+	while (tail != NULL) {
+		if (pos == 1) {
+			tail = tail->next;
+			free(*pphead);
+			*pphead = tail;
+			break;
+		}
+		prev = tail;
+		tail = tail->next;
+		if (pos == count) {
+			SListNode* cur = tail;
+			tail = tail->next;
+			prev->next = tail;
+			free(cur);
+			break;
+		}
+		count++;
 	}
 }
 //查找链表中x的位序
@@ -386,7 +432,8 @@ int main() {
 	insertSListBack(&sList, 1);
 	insertSListBack(&sList, 2);
 	insertSListBack(&sList, 3);
-	locateSList(sList, 5);
+	insertSListMid(&sList, 1, 5);
+	delSListMid(&sList, 1);
 	printSList(sList);
 }
 */

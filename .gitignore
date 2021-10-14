@@ -21,3 +21,11 @@ test1/.vs/DataStructure/v16/.suo
 *.pdb
 test1/.vs/DataStructure/v16
 x64/Debug
+*.pdb
+test1/.vs/DataStructure/v16/.suo
+test1/.vs/DataStructure/v16/Browse.VC.db
+test1/x64/Debug/projects.exe
+test1/x64/Debug/projects.ilk
+test1/x64/Debug/projects.pdb
+test1/x64/Debug/projects.tlog/link.read.1.tlog
+test1/x64/Debug/vc142.idb
