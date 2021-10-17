@@ -1,4 +1,5 @@
 #pragma warning(disable:6031)
+#pragma warning(disable:4996)
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
@@ -437,3 +438,127 @@ int main() {
 	printSList(sList);
 }
 */
+
+//Ë³Ðò±í¸´Ï°
+/*
+#define LSize 50;
+typedef int DataType;
+typedef struct SqList {
+	DataType* elem;
+	int length;
+	int listSize;
+}SqList;
+
+void initSList(SqList* L) {
+	L->length = 0;
+	L->listSize = LSize;
+	L->elem = (DataType*)malloc(L->listSize * sizeof(DataType));
+}
+
+void createSList(SqList* L) {
+	 while(scanf("%d", &L->elem[L->length])) {
+		L->length++;
+		if (getchar() == '\n') {
+			break;
+		}
+	 } 
+}
+
+void insertSList(SqList* L,int pos,int val) {
+	int i;
+	for (i = L->length;i >= pos - 1;i--) {
+		L->elem[i+1] = L->elem[i];
+		if (pos - 1 == i) {
+			L->elem[i] = val;
+			L->length++;
+		}
+	}
+}
+
+void deleteSList(SqList* L,int pos) {
+	for (int i = pos-1;i < L->length;i++) {
+		L->elem[i] = L->elem[i + 1];
+	}
+	L->length--;
+}
+
+void printSList(SqList* L) {
+	for (int i = 0;i < L->length;i++) {
+		printf("%d ", L->elem[i]);
+	}
+}
+
+int main() {
+	SqList L;
+	initSList(&L);
+	createSList(&L);
+	deleteSList(&L, 1);
+	printSList(&L);
+}
+*/
+
+
+
+typedef int DataType;
+typedef struct SListNode {
+	DataType data;
+	SListNode* next;
+}SListNode;
+
+SListNode* CreateSListNode(DataType x) {
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	if (newNode == NULL) {
+		printf("ÉêÇëÊ§°Ü\n");
+		exit(1);
+	}
+	newNode->data = x;
+	newNode->next = NULL;
+	return newNode;
+}
+
+void SListPushBack(SListNode** pphead,DataType x) {
+	SListNode* newNode = CreateSListNode(x);
+	if (*pphead == NULL) {
+		*pphead = newNode;
+	}
+	else {
+		SListNode* cur = *pphead;
+		while (cur->next != NULL) {
+			cur = cur->next;
+		}
+		cur->next = newNode;
+	}
+}
+
+void SListPopBack(SListNode** pphead) {
+	SListNode* prev = NULL;
+	SListNode* cur = *pphead;
+	if (cur->next == NULL) {
+		free(cur);
+	}
+	else {
+		while (cur->next != NULL) {
+			prev = cur;
+			cur = cur->next;
+		}
+		prev->next = NULL;
+		free(cur);
+	}
+}
+
+void PrintSList(SListNode* pphead) {
+	SListNode* cur = pphead;
+	while (cur != NULL) {
+		printf("%d ", cur->data);
+		cur = cur->next;
+	}
+}
+
+int main() {
+	SListNode* SList = NULL;
+	SListPushBack(&SList, 1);
+	SListPushBack(&SList, 2);
+	SListPushBack(&SList, 3);
+	SListPopBack(&SList);
+	PrintSList(SList);
+}
