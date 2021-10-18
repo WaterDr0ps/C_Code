@@ -497,8 +497,8 @@ int main() {
 }
 */
 
-
-
+//单链表练习
+/*
 typedef int DataType;
 typedef struct SListNode {
 	DataType data;
@@ -530,6 +530,33 @@ void SListPushBack(SListNode** pphead,DataType x) {
 	}
 }
 
+void SListInsert(SListNode** pphead, int pos, DataType x) {
+	SListNode* newNode = CreateSListNode(x);
+	int count = 2;
+	if (*pphead == NULL) {
+		*pphead = newNode;
+	}
+	else {
+		SListNode* prev = NULL;
+		SListNode* cur = *pphead;
+		while (cur->next != NULL) {
+			if (pos == 1) {
+				*pphead = newNode;
+				newNode->next = cur;
+				break;
+			}
+			prev = cur;
+			cur = cur->next;
+			if(pos == count) {
+				prev->next = newNode;
+				newNode->next = cur;
+				break;
+			}
+			count++;
+		}
+	}
+}
+
 void SListPopBack(SListNode** pphead) {
 	SListNode* prev = NULL;
 	SListNode* cur = *pphead;
@@ -546,6 +573,34 @@ void SListPopBack(SListNode** pphead) {
 	}
 }
 
+void SListDelete(SListNode** pphead, int pos) {
+	if (*pphead == NULL) {
+		printf("此表为空");
+		exit(1);
+	}
+	SListNode* prev = NULL;
+	SListNode* cur = *pphead;
+	int count = 2;
+	
+	while (cur->next != NULL) {
+		prev = cur;
+		cur = cur->next;
+		if (pos == 1) {
+			*pphead = cur;
+			free(prev);
+			break;
+		}
+		if (pos == count) {
+			SListNode* del = cur;
+			cur = cur->next;
+			free(del);
+			prev->next = cur;
+			break;
+		}
+		count++;
+	}
+}
+
 void PrintSList(SListNode* pphead) {
 	SListNode* cur = pphead;
 	while (cur != NULL) {
@@ -559,6 +614,47 @@ int main() {
 	SListPushBack(&SList, 1);
 	SListPushBack(&SList, 2);
 	SListPushBack(&SList, 3);
-	SListPopBack(&SList);
+	SListDelete(&SList, 3);
 	PrintSList(SList);
+}
+*/
+
+
+#include<assert.h>
+typedef int DataType;
+typedef struct DListNode {
+	DataType data;
+	DListNode* prev;
+	DListNode* next;
+}DListNode;
+
+DListNode* CreateDListNode(DataType x) {
+	DListNode* newNode = (DListNode*)malloc(sizeof(DListNode));
+	newNode->prev = NULL;
+	newNode->next = NULL;
+	newNode->data = x;
+	return newNode;
+}
+
+DListNode* InitDList(DListNode* phead) {
+	phead = CreateDListNode(0);
+	phead->prev = phead;
+	phead->next = phead;
+	return phead;
+}
+void DListPushBack(DListNode* phead, DataType x) {
+	assert(phead);
+	DListNode* cur = InitDList(phead);
+	DListNode* newNode = CreateDListNode(x);
+}
+void PrintDList(DListNode* phead) {
+	assert(phead);
+	DListNode* cur = phead->next;
+	while (cur->next != phead) {
+		printf("%d ", cur->data);
+	}
+}
+
+int main() {
+
 }
