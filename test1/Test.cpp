@@ -619,7 +619,8 @@ int main() {
 }
 */
 
-
+//双链表练习
+/*
 #include<assert.h>
 typedef int DataType;
 typedef struct DListNode {
@@ -627,34 +628,92 @@ typedef struct DListNode {
 	DListNode* prev;
 	DListNode* next;
 }DListNode;
-
+//创建一个节点
 DListNode* CreateDListNode(DataType x) {
 	DListNode* newNode = (DListNode*)malloc(sizeof(DListNode));
+	if (newNode == NULL) {
+		printf("节点创建失败");
+		exit(1);
+	}
+	newNode->data = x;
 	newNode->prev = NULL;
 	newNode->next = NULL;
-	newNode->data = x;
 	return newNode;
 }
-
+//初始化头结点(带头结点的结构)
 DListNode* InitDList(DListNode* phead) {
-	phead = CreateDListNode(0);
+	phead = CreateDListNode(-10000);
 	phead->prev = phead;
 	phead->next = phead;
 	return phead;
 }
+//尾插
 void DListPushBack(DListNode* phead, DataType x) {
 	assert(phead);
-	DListNode* cur = InitDList(phead);
+	DListNode* tail = phead->prev;
 	DListNode* newNode = CreateDListNode(x);
+	tail->next = newNode;
+	newNode->prev = tail;
+	phead->prev = newNode;
+	newNode->next = phead;
 }
+//中间插入
+void DListInsert(DListNode* phead, DataType pos, DataType x) {
+	DListNode* newNode = CreateDListNode(x);
+	DListNode* cur = phead->next;
+	int count = 2;
+	while (cur->next != phead) {
+		if (pos == 1) {
+			phead->next = newNode;
+			newNode->prev = phead;
+			newNode->next = cur;
+			cur->prev = newNode;
+			break;
+		}
+		if (count == pos) {
+			DListNode* tail = cur->next;
+			cur->next = newNode;
+			newNode->prev = cur;
+			newNode->next = tail;
+			tail->prev = newNode;
+			break;
+
+		}
+		cur = cur->next;
+		count++;
+	}
+}
+//尾删
+void DListPopBack(DListNode* phead) {
+	assert(phead);
+	DListNode* del = phead->prev;
+	DListNode* tail = del->prev;
+	free(del);
+	phead->prev = tail;
+	tail->next = phead;
+}
+//遍历
 void PrintDList(DListNode* phead) {
 	assert(phead);
 	DListNode* cur = phead->next;
-	while (cur->next != phead) {
+	if (cur->data == -10000) {
+		printf("空表");
+		exit(1);
+	}
+	while (cur != phead) {
 		printf("%d ", cur->data);
+		cur = cur->next;
 	}
 }
 
 int main() {
-
+	DListNode* L=NULL;
+	L=InitDList(L);
+	DListPushBack(L, 1);
+	DListPushBack(L, 2);
+	DListPushBack(L, 3);
+	DListInsert(L, 1, 5);
+	PrintDList(L);
 }
+*/
+
