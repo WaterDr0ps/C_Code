@@ -717,3 +717,91 @@ int main() {
 }
 */
 
+#define N 50;
+typedef struct SqList {
+	int* elem;
+	int length;
+	int listSize;
+}SqList;
+
+void getArray(int arr[],int n) {
+	for (int i = 0;i < n;i++) {
+		scanf("%d", &arr[i]);
+	}
+}
+
+void initList(SqList& L) {
+	L.length = 0;
+	L.listSize = N;
+	L.elem = (int*)malloc(L.listSize * sizeof(int));
+}
+
+void createList(SqList& L, int arr[],int n) {
+	for (int i = 0;i < n;i++) {
+		L.elem[i] = arr[i];
+		L.length++;
+	}
+}
+
+void mergeList(SqList& A, SqList& B,SqList& C) {
+	C = A;
+	int i = C.length - 1, j = B.length - 1;
+	while (i >= 0 && j >= 0) {
+		if (C.elem[i] <= B.elem[j]) {
+			if (C.elem[i + 1]==NULL)
+			{
+				C.elem[i + 1] = B.elem[j];
+			}
+			else {
+				for (int k = C.length - 1; k >= i + 1; --k)
+				{
+					C.elem[k + 1] = C.elem[k];
+				}
+				C.elem[i + 1] = B.elem[j];
+			}
+			C.length++;
+			j--;
+		}
+		else {
+			i--;
+		}
+	}
+}
+
+void merge2List(SqList& A, SqList& B, SqList& C) {
+	C = A;
+	int j = 0;
+	for (int i = C.length;i < A.length + B.length;i++) {
+		C.elem[i] = B.elem[j];
+		j++;
+		C.length++;
+	}
+	for (int i = 0;i < C.length;i++) {
+		for (int j = 0;j < C.length - 1 - i;j++) {
+			if (C.elem[j] > C.elem[j + 1]) {
+				int temp = C.elem[j];
+				C.elem[j] = C.elem[j + 1];
+				C.elem[j + 1] = temp;
+			}
+		}
+	}
+}
+
+void printList(SqList& L) {
+	for (int i = 0;i < L.length;i++) {
+		printf("%d ", L.elem[i]);
+	}
+}
+
+int main() {
+	SqList La, Lb, Lc;initList(La);initList(Lb);initList(Lc);
+	int la[5], lb[5];
+	getArray(la, 5);
+	getArray(lb, 5);
+	createList(La, la, 5);
+	createList(Lb, lb, 5);
+	merge2List(La,Lb,Lc);
+	printList(Lc);
+	
+	
+}
