@@ -30,31 +30,6 @@ void createList(SqList& L, int arr[], int n) {
 		L.length++;
 	}
 }
-//该方法将A元素全部赋给C，再将B中的元素从尾依次比较插入C中
-void mergeListBack(SqList& A, SqList& B, SqList& C) {
-	C = A;
-	int i = C.length - 1, j = B.length - 1;
-	while (i >= 0 && j >= 0) {
-		if (C.elem[i] <= B.elem[j]) {
-			if (C.elem[i + 1] == NULL)
-			{
-				C.elem[i + 1] = B.elem[j];
-			}
-			else {
-				for (int k = C.length - 1; k >= i ; --k)
-				{
-					C.elem[k + 1] = C.elem[k];
-				}
-				C.elem[i + 1] = B.elem[j];
-			}
-			C.length++;
-			j--;
-		}
-		else {
-			i--;
-		}
-	}
-}
 //该方法将A元素全部赋值给C，再将B中的元素从头依次比较插入C中
 void mergeListFront(SqList& A, SqList& B, SqList& C) {
 	C = A;
@@ -66,10 +41,17 @@ void mergeListFront(SqList& A, SqList& B, SqList& C) {
 			}
 			C.elem[i] = B.elem[j];
 			C.length++;
-			j--;
+			j++;
 		}
 		else {
 			i++;
+			if (i == C.length&&j!=B.length) {
+				for (int k = C.length;k < B.length+A.length;k++) {
+					C.elem[k] = B.elem[j];
+					C.length++;
+					j++;
+				}
+			}
 		}
 	}
 }
