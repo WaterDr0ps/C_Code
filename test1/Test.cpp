@@ -717,14 +717,16 @@ int main() {
 }
 */
 
-#define N 50;
+//有序表的合并(顺序表实现)
+/*
+#define LSize 50;
 typedef struct SqList {
 	int* elem;
 	int length;
 	int listSize;
 }SqList;
 
-void getArray(int arr[],int n) {
+void getArray(int arr[], int n) {
 	for (int i = 0;i < n;i++) {
 		scanf("%d", &arr[i]);
 	}
@@ -732,43 +734,43 @@ void getArray(int arr[],int n) {
 
 void initList(SqList& L) {
 	L.length = 0;
-	L.listSize = N;
+	L.listSize = LSize;
 	L.elem = (int*)malloc(L.listSize * sizeof(int));
 }
 
-void createList(SqList& L, int arr[],int n) {
+void createList(SqList& L, int arr[], int n) {
 	for (int i = 0;i < n;i++) {
 		L.elem[i] = arr[i];
 		L.length++;
 	}
 }
-
-void mergeList(SqList& A, SqList& B,SqList& C) {
+//该方法将A元素全部赋值给C，再将B中的元素从头依次比较插入C中
+void mergeListFront(SqList& A, SqList& B, SqList& C) {
 	C = A;
-	int i = C.length - 1, j = B.length - 1;
-	while (i >= 0 && j >= 0) {
-		if (C.elem[i] <= B.elem[j]) {
-			if (C.elem[i + 1]==NULL)
-			{
-				C.elem[i + 1] = B.elem[j];
+	int i = 0, j = 0;
+	while (i < C.length && j < B.length) {
+		if (C.elem[i] >= B.elem[j]) {
+			for (int k = C.length - 1;k >= i;k--) {
+				C.elem[k + 1] = C.elem[k];
 			}
-			else {
-				for (int k = C.length - 1; k >= i + 1; --k)
-				{
-					C.elem[k + 1] = C.elem[k];
-				}
-				C.elem[i + 1] = B.elem[j];
-			}
+			C.elem[i] = B.elem[j];
 			C.length++;
-			j--;
+			j++;
 		}
 		else {
-			i--;
+			i++;
+			if (i == C.length && j != B.length) {
+				for (int k = C.length;k < B.length + A.length;k++) {
+					C.elem[k] = B.elem[j];
+					C.length++;
+					j++;
+				}
+			}
 		}
 	}
 }
-
-void merge2List(SqList& A, SqList& B, SqList& C) {
+//该方法将A赋值给C，再将B中元素直接尾插入C中，再将C中排序
+void mergeListSort(SqList& A, SqList& B, SqList& C) {
 	C = A;
 	int j = 0;
 	for (int i = C.length;i < A.length + B.length;i++) {
@@ -800,8 +802,9 @@ int main() {
 	getArray(lb, 5);
 	createList(La, la, 5);
 	createList(Lb, lb, 5);
-	merge2List(La,Lb,Lc);
+	mergeListFront(La, Lb, Lc);
 	printList(Lc);
-	
-	
 }
+*/
+
+//有序表的合并(链表实现)

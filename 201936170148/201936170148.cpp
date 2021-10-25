@@ -3,7 +3,6 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
-#include<conio.h>
 
 #define LSize 50;
 typedef struct SqList {
@@ -55,7 +54,6 @@ void mergeListFront(SqList& A, SqList& B, SqList& C) {
 		}
 	}
 }
-
 //该方法将A赋值给C，再将B中元素直接尾插入C中，再将C中排序
 void mergeListSort(SqList& A, SqList& B, SqList& C) {
 	C = A;
@@ -91,7 +89,5 @@ int main() {
 	createList(Lb, lb, 5);
 	mergeListFront(La, Lb, Lc);
 	printList(Lc);
-
-
 }
 
