@@ -808,3 +808,85 @@ int main() {
 */
 
 //有序表的合并(链表实现)
+#include<assert.h>
+typedef int DataType;
+typedef struct SListNode {
+	DataType data;
+	SListNode* next;
+}SListNode;
+
+SListNode* initList() {
+	SListNode* phead = (SListNode*)malloc(sizeof(SListNode));
+	if (!phead) {
+		printf("头结点创建失败");
+		exit(1);
+	}
+	phead->data = 0;
+	phead->next = NULL;
+	return phead;
+}
+
+SListNode* createSListNode(DataType x) {
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	if (!newNode) {
+		printf("新节点创建失败");
+		exit(1);
+	}
+	newNode->data = x;
+	newNode->next = NULL;
+	return newNode;
+}
+void estaBlishSList(SListNode** pphead) {
+	assert(*pphead);
+	DataType x;
+	SListNode* cur = *pphead;
+	do {
+		scanf("%d", &x);
+		SListNode* newNode = createSListNode(x);
+		if (cur->next == NULL) {
+			cur->next= newNode;
+		}else{
+			while (cur->next != NULL) {
+				cur = cur->next;
+			}
+			cur->next = newNode;
+		}
+	} while (getchar() != '\n');
+}
+
+void mergeSList(SListNode* La, SListNode* Lb, SListNode* Lc) {
+	SListNode* pa = La->next;
+	SListNode* pb = Lb->next;
+	SListNode* pc = Lc;
+	while (pa && pb) {
+		if (pa->data <= pb->data) {
+			pc->next = pa;
+			pc = pa;
+			pa = pa->next;
+		}
+		else {
+			pc->next = pb;
+			pc = pb;
+			pb = pb->next;
+		}
+	}
+	pc->next = pa ? pa : pb;
+}
+
+void printSList(SListNode* phead) {
+	SListNode* cur = phead->next;
+	while (cur!= NULL) {
+		printf("%d ", cur->data);
+		cur = cur->next;
+	}
+}
+
+int main() {
+	SListNode* La = initList();
+	SListNode* Lb = initList();
+	SListNode* Lc = initList();
+	estaBlishSList(&La);
+	estaBlishSList(&Lb);
+	mergeSList(La, Lb, Lc);
+	printSList(Lc);
+}
