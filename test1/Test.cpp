@@ -5,7 +5,51 @@
 #include<stdlib.h>
 #include<conio.h>
 
+
+//栈的操作(链栈)
+typedef int DataType;
+typedef struct LStack {
+	DataType data;
+	LStack* next;
+}LStack;
+
+void pushStack(LStack** S,DataType x) {
+	LStack* P = (LStack*)malloc(sizeof(LStack));
+	if (P != NULL) {
+		P->data = x;
+		P->next = *S;
+		*S = P;
+	}
+}
+
+void popStack(LStack** S) {
+	if (S!=NULL) {
+		LStack* P = *S;
+		*S = (*S)->next;
+		free(P);
+	}
+}
+
+void printStack(LStack* S) {
+	while (S != NULL) {
+		printf("%d ", S->data);
+		S = S->next;
+	}
+
+}
+
+int main() {
+	LStack* S = NULL;
+	pushStack(&S, 1);
+	pushStack(&S, 2);
+	pushStack(&S, 3);
+	pushStack(&S, 4);
+	popStack(&S);
+	printStack(S);
+}
+
 //栈的操作(顺序栈)
+/*
 typedef int DataType;
 #define MAX_SIZE 50
 typedef struct SqStack {
@@ -21,9 +65,49 @@ void initSqStack(SqStack& S) {
 		exit(1);
 	}
 	S.top = S.base;
-	S.stackSize = 0;
+	S.stackSize = MAX_SIZE;
 }
 
+void pushStack(SqStack& S,DataType x) {
+	if (S.top == S.base) {
+		*S.base = x;
+		S.top++;
+	}
+	else if (S.top - S.base == S.stackSize) {
+		printf("满栈了");
+		exit(1);
+	}
+	else {
+		*S.top = x;
+		S.top++;
+	}
+}
+
+void popStack(SqStack& S) {
+	if (S.top != S.base) {
+		S.top--;
+	}
+}
+
+void printStack(SqStack& S) {
+	if (S.top == S.base) {
+		printf("空栈");
+		exit(1);
+	}
+	while (S.top != S.base) {
+		printf("%d ", *S.base);
+		S.base++;
+	}
+}
+
+int main() {
+	SqStack S;
+	initSqStack(S);
+	pushStack(S, 2);
+	popStack(S);
+	printStack(S);
+}
+*/
  
 //有序表的合并(链表实现)
 /*
@@ -913,18 +997,4 @@ int main() {
 	printf("两个复数的商是:%lf+%lfi\n", GetReal(C_div), GetImag(C_div));
 } 
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
