@@ -6,7 +6,138 @@
 #include<conio.h>
 
 
+//队列(链队列)
+/*
+typedef int DataType;
+typedef struct QNode {
+	DataType data;
+	QNode* next;
+}QNode;
+//front和tail都是QNode的指针变量，用于控制头删尾插的特性
+typedef struct LinkNode {
+	QNode* front;
+	QNode* tail;
+}LinkNode;
+
+void initQNode(LinkNode& Q) {
+	Q.front = Q.tail = NULL;
+}
+
+QNode* buyNode(DataType x) {
+	QNode* newNode = (QNode*)malloc(sizeof(QNode));
+	if (newNode) {
+		newNode->data = x;
+		newNode->next = NULL;
+	}
+	return newNode;
+}
+
+void enQueue(LinkNode& Q,DataType x) {
+	QNode* newNode = buyNode(x);
+	if (!Q.front) {
+		Q.front = Q.tail = newNode;
+	}
+	else {
+		Q.tail->next = newNode;
+		Q.tail = newNode;
+	}
+}
+
+void deQueue(LinkNode& Q) {
+	if (Q.front) {
+		QNode* cur = Q.front;
+		Q.front = Q.front->next;
+		free(cur);
+	}
+	
+}
+
+void printNode(LinkNode& Q) {
+	if (!Q.front) {
+		printf("空队列");
+		exit(1);
+	}
+	while (Q.front) {
+		printf("%d\n", Q.front->data);
+		Q.front = Q.front->next;
+	}
+}
+
+int main() {
+	LinkNode Q;
+	initQNode(Q);
+	enQueue(Q, 1);
+	enQueue(Q, 2);
+	enQueue(Q, 3);
+	enQueue(Q, 4);
+	deQueue(Q);
+	printNode(Q);
+}
+*/
+
+//队列(循环顺序队列)
+/*
+#define MAX_SIZE 6
+typedef int DataType;
+typedef struct SqQueue {
+	DataType* elem;
+	int front;
+	int tail;
+}SqQueue;
+
+void initQueue(SqQueue& Q) {
+	Q.elem = (DataType*)malloc(MAX_SIZE * sizeof(DataType));
+	Q.front = 0;
+	Q.tail = 0;
+}
+//这里是浪费一个存储单元来判断满队列的情况，也可以设置一个flag或length来判断
+void enQueue(SqQueue& Q, DataType x) {
+	if ((Q.tail + 1) % MAX_SIZE == Q.front) {
+		printf("满队列");
+		exit(1);
+	}
+	Q.elem[Q.tail] = x;
+	Q.tail = (Q.tail + 1) % MAX_SIZE;
+}
+
+void deQueue(SqQueue& Q) {
+	if (Q.front != Q.tail) {
+		Q.front = (Q.front + 1) % MAX_SIZE;
+	}
+}
+//返回队列元素个数，注：tail可能在front前也可能在front后，故用模mod运算
+int QueueLength(SqQueue& Q) {
+	return((Q.tail - Q.front + MAX_SIZE) % MAX_SIZE);
+}
+
+void printQueue(SqQueue& Q) {
+	int cur = Q.front;
+	if (cur == Q.tail) {
+		printf("空队列");
+		exit(1);
+	}
+	while (cur != Q.tail) {
+		printf("%d\n", Q.elem[cur]);
+		cur = (cur + 1) % MAX_SIZE;
+	}
+}
+
+int main() {
+	SqQueue Q;
+	initQueue(Q);
+	enQueue(Q, 1);
+	enQueue(Q, 2);
+	enQueue(Q, 3);
+	deQueue(Q);
+	enQueue(Q, 4);
+	enQueue(Q, 5);
+	enQueue(Q, 6);
+	printQueue(Q); 
+}
+*/
+
 //栈的操作(链栈)
+/*
 typedef int DataType;
 typedef struct LStack {
 	DataType data;
@@ -47,6 +178,7 @@ int main() {
 	popStack(&S);
 	printStack(S);
 }
+*/
 
 //栈的操作(顺序栈)
 /*
