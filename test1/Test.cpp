@@ -6,6 +6,88 @@
 #include<conio.h>
 
 
+//KMP算法
+#include<string.h>
+void getNext(char T[],int next[]) {
+	int i = 1;
+	int j = 0;
+	next[1] = 0;
+	while (i < T[0]) {
+		if (j == 0 || T[i] == T[j]) {
+			i++;
+			j++;
+			next[i] = j;
+		}
+		else {
+			j = next[j]; 
+		}
+	}
+}
+
+int KMP(char S[], char T[], int next[]) {
+	int i = 1;
+	int j = 1;
+	while (i <= S[0] && j <= T[0]) {
+		if (j == 0 || S[i] == T[j]) {
+			i++;
+			j++;
+		}
+		else {
+			j = next[j];
+		}
+	}
+	if (i > T[0]&&S[i]==T[j]) {
+		return i - T[0];
+	}
+	else {
+		return 0;
+	}
+}
+
+int main() {
+	char S[] = " abcdefge";
+	char T[] = " fge";
+	S[0] = strlen(S) - 1;
+	T[0] = strlen(T) - 1;
+	int next[20];
+	getNext(T,next);
+	printf("%d", KMP(S, T, next));
+}
+
+
+//BF算法
+/*
+#include<string.h>
+int BruteForce(char S[],char T[]) {
+	int i = 1;
+	int j = 1;
+	while (i <= S[0] && j <= T[0]) {
+		if (S[i] == T[j]) {
+			i++;
+			j++;
+		}
+		else {
+			i = i - j + 2;
+			j = 1;
+		}
+	}
+	if (i > T[0]) {
+		return i - T[0];
+	}
+	else {
+		return 0;
+	}
+ }
+
+int main() {
+	char S[] = " abcdefge";
+	char T[] = " cde";
+	S[0] = strlen(S) - 1;
+	T[0] = strlen(T) - 1;
+	printf("%d", BruteForce(S,T));
+}
+*/
+
 //队列(链队列)
 /*
 typedef int DataType;
