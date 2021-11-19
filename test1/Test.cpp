@@ -7,6 +7,7 @@
 
 
 //KMPÀ„∑®
+/*
 #include<string.h>
 void getNext(char T[],int next[]) {
 	int i = 1;
@@ -46,14 +47,14 @@ int KMP(char S[], char T[], int next[]) {
 
 int main() {
 	char S[] = " abcdefge";
-	char T[] = " fge";
+	char T[] = " fged";
 	S[0] = strlen(S) - 1;
 	T[0] = strlen(T) - 1;
 	int next[20];
 	getNext(T,next);
 	printf("%d", KMP(S, T, next));
 }
-
+*/
 
 //BFÀ„∑®
 /*
