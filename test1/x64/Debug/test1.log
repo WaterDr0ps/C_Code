@@ -1,4 +1,4 @@
 ﻿  Test.cpp
-C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(50,22): warning C4267: “=”: 从“size_t”转换到“char”，可能丢失数据
-C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(51,22): warning C4267: “=”: 从“size_t”转换到“char”，可能丢失数据
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(40,22): warning C4267: “=”: 从“size_t”转换到“char”，可能丢失数据
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(42,22): warning C4267: “=”: 从“size_t”转换到“char”，可能丢失数据
   test1.vcxproj -> C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\projects.exe

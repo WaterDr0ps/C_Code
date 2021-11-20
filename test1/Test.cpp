@@ -6,6 +6,38 @@
 #include<conio.h>
 
 
+//≤°∂æDNAºÏ≤‚∆•≈‰
+#include<string.h>
+bool BruteForce(char* S, char* T) {
+	int i = 0;
+	int j = 0;
+	while (i < strlen(S) && j < strlen(T)) {
+		if (S[i] == T[j]) {
+			i++;
+			j++;
+		}
+		else {
+			i = i - j + 1;
+			j = 0;
+		}
+	}
+	if (i > strlen(S)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool judegVirus(char* S, char* T) {
+
+}
+
+int main() {
+
+}
+
+
 //KMPÀ„∑®
 /*
 #include<string.h>
