@@ -5,9 +5,17 @@
 #include<stdlib.h>
 #include<conio.h>
 
+#define MAX_SIZE 100
+typedef int SqBiTree[MAX_SIZE];
+int main(){
+	SqBiTree bt;
+}
 
 //病毒DNA检测匹配
+/*
 #include<string.h>
+#include<iostream>
+using namespace std;
 bool BruteForce(char* S, char* T) {
 	int i = 0;
 	int j = 0;
@@ -21,22 +29,46 @@ bool BruteForce(char* S, char* T) {
 			j = 0;
 		}
 	}
-	if (i > strlen(S)) {
+	if (i > strlen(T)) {
 		return true;
 	}
 	else {
 		return false;
 	}
 }
+//将T中第一个字符放到最后一位
+char* turn(char* T) {
+	char* temp = T;
+	char head[2] = { temp[0] };//数组需要预留'\0'的空间
+	strcpy(T, temp + 1);
+	strcat(T, head);
+	return T;
+}
 
 bool judegVirus(char* S, char* T) {
-
+		for (int i = 0;i < strlen(T);i++) {
+			if (i != 0) {
+				strcpy(T, turn(T));
+			}
+			if (BruteForce(S, T)) {
+				return true;
+			}
+		}
+		return false;
 }
 
 int main() {
-
+	char Virus[100];
+	char DNA[200];
+	scanf("%s %s", Virus, DNA);
+	if (judegVirus(DNA, Virus)) {
+		cout << "Yes" << endl;
+	}
+	else {
+		cout << "No" << endl;
+	}
 }
-
+*/
 
 //KMP算法
 /*
