@@ -5,11 +5,47 @@
 #include<stdlib.h>
 #include<conio.h>
 
-#define MAX_SIZE 100
-typedef int SqBiTree[MAX_SIZE];
-int main(){
-	SqBiTree bt;
+void printArray(int arr[], int len);
+void bubbleSort(int arr[], int len);
+int main() {
+	int arr[] = { 1,5,3,4,2 };
+	bool flag = true;
+	int len = sizeof(arr) / sizeof(arr[0]);
+	for (int i = 0;i < len-1;i++) {
+		if (arr[i] > arr[i + 1]) {
+			flag = false;
+			break;
+		}
+	}
+	if (flag) {
+		printf("无需排序");
+		exit(0);
+	}
+	else {
+		bubbleSort(arr, len);
+		printf("排序完成\n");
+		printArray(arr,len);
+	}
 }
+
+void printArray(int arr[], int len) {
+	for (int i = 0;i < len;i++) {
+		printf("%d ", arr[i]);
+	}
+}
+
+void bubbleSort(int arr[], int len) {
+	for (int i = 0;i < len;i++) {
+		for (int j = 0;j < len - i - 1;j++) {
+			if (arr[j] > arr[j + 1]) {
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+}
+
 
 //病毒DNA检测匹配
 /*
@@ -118,6 +154,7 @@ int main() {
 	getNext(T,next);
 	printf("%d", KMP(S, T, next));
 }
+
 */
 
 //BF算法
@@ -220,6 +257,7 @@ int main() {
 	deQueue(Q);
 	printNode(Q);
 }
+
 */
 
 //队列(循环顺序队列)
@@ -386,8 +424,8 @@ int main() {
 	popStack(S);
 	printStack(S);
 }
-*/
- 
+ */
+
 //有序表的合并(链表实现)
 /*
 #include<assert.h>
