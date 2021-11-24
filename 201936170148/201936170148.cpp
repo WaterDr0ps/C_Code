@@ -4,6 +4,48 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+void printArray(int arr[], int len);
+void bubbleSort(int arr[], int len);
+int main() {
+	int arr[] = { 1,6,3,4,5 };
+	int arr2[] = { 1,2,3,4,5 };
+	int len = sizeof(arr) / sizeof(arr[0]);
+	int len2 = sizeof(arr2) / sizeof(arr2[0]);
+	bubbleSort(arr, len);
+	printArray(arr, len);
+	bubbleSort(arr2, len2);
+	printArray(arr2, len2);
+}
+
+void printArray(int arr[], int len) {
+	for (int i = 0;i < len;i++) {
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+
+void bubbleSort(int arr[], int len) {
+	int count = 0;
+	for (int i = 0;i < len;i++) {
+		for (int j = 0;j < len - i - 1;j++) {
+			if (arr[j] > arr[j + 1]) {
+				count++;
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+		if (count == 0) {
+			printf("无需排序！\n");
+			return;
+		}
+	}
+	printf("排序成功！\n");
+}
+
+//实验1
+/*
 #define LSize 50;
 typedef struct SqList {
 	int* elem;
@@ -90,4 +132,4 @@ int main() {
 	mergeListFront(La, Lb, Lc);
 	printList(Lc);
 }
-
+*/

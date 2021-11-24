@@ -8,24 +8,10 @@
 void printArray(int arr[], int len);
 void bubbleSort(int arr[], int len);
 int main() {
-	int arr[] = { 1,5,3,4,2 };
-	bool flag = true;
+	int arr[] = { 1,6,3,4,5 };
 	int len = sizeof(arr) / sizeof(arr[0]);
-	for (int i = 0;i < len-1;i++) {
-		if (arr[i] > arr[i + 1]) {
-			flag = false;
-			break;
-		}
-	}
-	if (flag) {
-		printf("无需排序");
-		exit(0);
-	}
-	else {
-		bubbleSort(arr, len);
-		printf("排序完成\n");
-		printArray(arr,len);
-	}
+	bubbleSort(arr, len);
+	printArray(arr, len);
 }
 
 void printArray(int arr[], int len) {
@@ -35,15 +21,22 @@ void printArray(int arr[], int len) {
 }
 
 void bubbleSort(int arr[], int len) {
+	int count = 0;
 	for (int i = 0;i < len;i++) {
 		for (int j = 0;j < len - i - 1;j++) {
 			if (arr[j] > arr[j + 1]) {
+				count++;
 				int temp = arr[j];
 				arr[j] = arr[j + 1];
 				arr[j + 1] = temp;
 			}
 		}
+		if (count == 0) {
+			printf("无需排序！\n");
+			break;
+		}
 	}
+	printf("排序成功！\n");
 }
 
 
