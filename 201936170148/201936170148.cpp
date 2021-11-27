@@ -4,7 +4,79 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+typedef int DataType;
+typedef struct SqList {
+	DataType* elem;
+	int length;
+	int listSize;
+}SqList;
 
+void initList(SqList& L) {
+	L.listSize = 50;
+	L.length = 0;
+	L.elem = (DataType*)malloc(L.listSize * sizeof(DataType));
+}
+
+void createList(SqList& L, int arr[],int len) {
+	for (int i = 0;i < len;i++) {
+		L.elem[i] = arr[i];
+		L.length++;
+	}
+
+}
+
+void insertList(SqList& L,int pos,int val) {
+	for (int i = L.length;i >= pos;i--){
+		L.elem[i + 1] = L.elem[i];
+	}
+	L.elem[pos] = val;
+	L.length++;
+}
+
+void mergeList(SqList& A, SqList& B) {
+	int i = 0;
+	int j = 0;
+	while (i < A.length && j < B.length) {
+		if (B.elem[j] < A.elem[i]) {
+			insertList(A, i, B.elem[j]);
+			j++;
+		}
+		else if(B.elem[j] > A.elem[i]){
+			i++;
+			if (j != B.length && i == A.length) {
+				for (int i = A.length;i <A.length+B.length-j;i++) {
+					insertList(A, i, B.elem[j]);
+					j++;
+				}
+			}
+		}
+		else {
+			j++;
+		}
+	}
+}
+
+void printList(SqList& L) {
+	for(int i=0;i<L.length;i++){
+		printf("%d ", L.elem[i]);
+	}
+}
+
+int main() {
+	int la[] = { 1,2,3,4,5 };
+	int lb[] = { 2,4,6,8,10 };
+	SqList La, Lb;
+	initList(La);
+	initList(Lb);
+	createList(La, la,5);
+	createList(Lb, lb,5);
+	mergeList(La, Lb);
+	printList(La);
+
+}
+
+//实验2_改进的冒泡排序
+/*
 void printArray(int arr[], int len);
 void bubbleSort(int arr[], int len);
 int main() {
@@ -43,8 +115,9 @@ void bubbleSort(int arr[], int len) {
 	}
 	printf("排序成功！\n");
 }
+*/
 
-//实验1
+//实验1_有序表合并
 /*
 #define LSize 50;
 typedef struct SqList {
