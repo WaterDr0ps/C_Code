@@ -56,23 +56,55 @@ void mergeList(SqList& A, SqList& B) {
 	}
 }
 
+void mergeNewList(SqList& A, SqList& B, SqList& C) {
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	while (i < A.length && j < B.length) {
+		if (B.elem[j] < A.elem[i]) {
+			insertList(C, k, B.elem[j]);
+			k++;
+			j++;
+		}
+		else {
+			insertList(C, k, A.elem[i]);
+			i++;
+			k++;
+			if (j != B.length && i == A.length) { 
+				for (int m = C.length;m < A.length + B.length;m++) {
+					insertList(C, k, B.elem[j]);
+					k++;
+					j++;
+				}
+			}
+		}
+	}
+}
+
+
 void printList(SqList& L) {
 	for(int i=0;i<L.length;i++){
 		printf("%d ", L.elem[i]);
 	}
+	printf("\n");
 }
 
 int main() {
 	int la[] = { 1,2,3,4,5 };
 	int lb[] = { 2,4,6,8,10 };
-	SqList La, Lb;
+	SqList La, Lb,Lc;
 	initList(La);
 	initList(Lb);
+	initList(Lc);
 	createList(La, la,5);
 	createList(Lb, lb,5);
 	mergeList(La, Lb);
 	printList(La);
-
+	int lB[] = { 2,6,8,9,11,15,20 };
+	initList(Lb);
+	createList(Lb, lB, 7);
+	mergeNewList(La, Lb, Lc);
+	printList(Lc);
 }
 
 //实验2_改进的冒泡排序
