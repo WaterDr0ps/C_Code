@@ -4,6 +4,155 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+typedef struct SListNode {
+	int date;
+	struct SListNode* next;
+}SListNode;
+//新开辟一个节点
+SListNode* buyNode(int x) {
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	if (!newNode) {
+		printf("节点创建失败！");
+		exit(-1);
+	}
+	newNode->date = x;
+	newNode->next = NULL;
+	return newNode;
+}
+//链表尾插
+void SListPushBack(SListNode** pphead, int x) {
+	SListNode* newNode = buyNode(x);
+	if (*pphead == NULL) {
+		*pphead = newNode;
+	}
+	else {
+		SListNode* cur = *pphead;
+		while (cur->next != NULL) {
+			cur = cur->next;
+		}
+		cur->next = newNode;
+	}
+}
+//反转链表m位置节点
+void invertSList(SListNode** phead, int m, int n) {
+	SListNode* cur = *phead;
+	SListNode* pm = NULL;
+	SListNode* pn = NULL;
+	SListNode* pn_next = NULL;
+	int count = 1;//用于记录链表位置
+	while (cur->next != NULL) {
+		cur = cur->next;
+		count++;
+		if (count == m) {
+			pm = cur;//当位置等于m时，用pm指针记录位置
+		}
+		if (count == m + n) {
+			pn = cur;
+			pn_next = pn->next;
+
+		}
+	}
+	if (pn && pm) {
+	pn->next = *phead;//尾指针指向头
+	*phead = pm->next;//pm指针下一个位置设置为头指针
+	pm->next = pn_next;//pm位置为尾所以设置next为空
+	}
+}
+//遍历链表
+void printSList(SListNode* phead) {
+	SListNode* cur = phead;
+	while (cur != NULL) {
+		printf("%d ", cur->date);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+
+int main() {
+	SListNode* L = NULL;
+	for (int i = 1;i <= 10;i++) {
+		SListPushBack(&L, i);
+	}
+	printSList(L);
+	int m, n;
+	printf("请输入前m个节点：\n");
+	scanf("%d", &m);
+	printf("请输入后n个节点：\n");
+	scanf("%d", &n);
+	invertSList(&L, m, n);
+	printSList(L);
+	
+}
+
+//实验4_链表的合并
+/*
+typedef struct SListNode {
+	int date;
+	struct SListNode* next;
+}SListNode;
+//新开辟一个节点
+SListNode* buyNode(int x) {
+	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
+	if (!newNode) {
+		printf("节点创建失败！");
+		exit(-1);
+	}
+	newNode->date = x;
+	newNode->next = NULL;
+	return newNode;
+}
+//链表尾插
+void SListPushBack(SListNode** pphead, int x) {
+	SListNode* newNode = buyNode(x);
+	//若头指针为空，赋值。否则，照尾，赋值。
+	if (*pphead == NULL) {
+		*pphead = newNode;
+	}
+	else {
+		SListNode* cur = *pphead;
+		while (cur->next != NULL) {
+			cur = cur->next;
+		}
+		cur->next = newNode;
+	}
+}
+//链表合并算法
+void mergeSList(SListNode* pa, SListNode* pb, SListNode** pc) {
+	*pc = pa;//pc指针指向pa
+	SListNode* cur = *pc;
+	while (cur->next != NULL) {
+		cur = cur->next;
+	}
+	cur->next = pb;//找到表尾后链接pb
+}
+//遍历链表
+void printSList(SListNode* phead) {
+	SListNode* cur = phead;
+	while (cur != NULL) {
+		printf("%d ", cur->date);
+		cur = cur->next;
+	}
+	printf("\n");
+}
+
+int main(int argc, char** argv) {
+	SListNode* La = NULL;
+	SListNode* Lb = NULL;
+	SListNode* Lc = NULL;
+	for (int i = 1;i <= 5;i++) {
+		SListPushBack(&La, i);
+		SListPushBack(&Lb, 2 * i);
+	}
+	printSList(La);
+	printSList(Lb);
+	mergeSList(La, Lb, &Lc);
+	printSList(Lc);
+	return 0;
+}
+*/
+
+//实验3_有序表合并加强
+/*
 typedef int DataType;
 typedef struct SqList {
 	DataType* elem;
@@ -106,6 +255,7 @@ int main() {
 	mergeNewList(La, Lb, Lc);
 	printList(Lc);
 }
+*/
 
 //实验2_改进的冒泡排序
 /*
