@@ -4,6 +4,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+、、
 typedef struct SListNode {
 	int date;
 	struct SListNode* next;
@@ -81,7 +82,6 @@ int main() {
 	scanf("%d", &n);
 	invertSList(&L, m, n);
 	printSList(L);
-	
 }
 
 //实验4_链表的合并
