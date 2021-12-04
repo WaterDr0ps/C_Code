@@ -5,39 +5,7 @@
 #include<stdlib.h>
 #include<conio.h>
 
-void printArray(int arr[], int len);
-void bubbleSort(int arr[], int len);
-int main() {
-	int arr[] = { 1,6,3,4,5 };
-	int len = sizeof(arr) / sizeof(arr[0]);
-	bubbleSort(arr, len);
-	printArray(arr, len);
-}
 
-void printArray(int arr[], int len) {
-	for (int i = 0;i < len;i++) {
-		printf("%d ", arr[i]);
-	}
-}
-
-void bubbleSort(int arr[], int len) {
-	int count = 0;
-	for (int i = 0;i < len;i++) {
-		for (int j = 0;j < len - i - 1;j++) {
-			if (arr[j] > arr[j + 1]) {
-				count++;
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-		}
-		if (count == 0) {
-			printf("Œﬁ–Ë≈≈–Ú£°\n");
-			break;
-		}
-	}
-	printf("≈≈–Ú≥…π¶£°\n");
-}
 
 
 //≤°∂æDNAºÏ≤‚∆•≈‰

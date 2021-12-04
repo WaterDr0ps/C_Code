@@ -4,7 +4,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-、、
+
+//实验4_链表的交换
+/*
 typedef struct SListNode {
 	int date;
 	struct SListNode* next;
@@ -42,16 +44,15 @@ void invertSList(SListNode** phead, int m, int n) {
 	SListNode* pn_next = NULL;
 	int count = 1;//用于记录链表位置
 	while (cur->next != NULL) {
-		cur = cur->next;
-		count++;
 		if (count == m) {
 			pm = cur;//当位置等于m时，用pm指针记录位置
 		}
 		if (count == m + n) {
 			pn = cur;
 			pn_next = pn->next;
-
 		}
+		cur = cur->next;
+		count++;
 	}
 	if (pn && pm) {
 	pn->next = *phead;//尾指针指向头
@@ -83,6 +84,7 @@ int main() {
 	invertSList(&L, m, n);
 	printSList(L);
 }
+*/
 
 //实验4_链表的合并
 /*
