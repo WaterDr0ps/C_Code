@@ -6,7 +6,7 @@
 
 
 //实验4_链表的交换
-/*
+
 typedef struct SListNode {
 	int date;
 	struct SListNode* next;
@@ -54,6 +54,10 @@ void invertSList(SListNode** phead, int m, int n) {
 		cur = cur->next;
 		count++;
 	}
+	if (m + n == 10) {
+		pn = cur;
+		pn_next = NULL;
+	}
 	if (pn && pm) {
 	pn->next = *phead;//尾指针指向头
 	*phead = pm->next;//pm指针下一个位置设置为头指针
@@ -84,7 +88,7 @@ int main() {
 	invertSList(&L, m, n);
 	printSList(L);
 }
-*/
+
 
 //实验4_链表的合并
 /*
