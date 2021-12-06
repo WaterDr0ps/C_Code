@@ -5,8 +5,89 @@
 #include<stdlib.h>
 
 
-//实验4_链表的交换
+#define MAX_SIZE 50
+typedef struct SqStack {
+	int* top;
+	int* base;
+	int stackSize;
+}SqStack;
 
+void initStack(SqStack& S) {
+	S.base = (int*)malloc(MAX_SIZE * sizeof(int));
+	if (!S.base) {
+		printf("申请失败！");
+		exit(1);
+	}
+	S.top = S.base;
+	S.stackSize = MAX_SIZE;
+}
+
+bool emptyStack(SqStack& S) {
+	if (S.top == S.base) {
+		return true;
+	}
+	return false;
+}
+
+void pushStack(SqStack& S, int e) {
+	if (emptyStack(S)) {
+		*S.base = e;
+		S.top++;
+	}
+	else if (S.top - S.base == S.stackSize) {
+		printf("满栈了");
+		exit(1);
+	}
+	else {
+		*S.top = e;
+		S.top++;
+	}
+}
+
+void popStack(SqStack& S, int& e) {
+	if (S.top != S.base) {
+		e = *--S.top;
+	}
+}
+
+void printStack(SqStack& S) {
+	if (S.top == S.base) {
+		printf("空栈");
+		exit(1);
+	}
+	while (S.top != S.base) {
+		printf("%d ", *S.base);
+		S.base++;
+	}
+
+}
+
+void conversion(SqStack& S, int e) {
+	int n;
+	printf("请输入十进制数：");
+	scanf("%d", &n);
+	while (n) {
+		pushStack(S, n % 2);
+		n = n / 2;
+	}
+	while (!emptyStack(S)) {
+		popStack(S, e);
+		printf("%d", e);
+	}
+}
+
+int main(int argc, char** argv) {
+	SqStack S;
+	int e;
+	initStack(S);
+	conversion(S, e);
+
+	return 0;
+}
+
+
+//实验4_链表的交换
+/*
 typedef struct SListNode {
 	int date;
 	struct SListNode* next;
@@ -88,7 +169,7 @@ int main() {
 	invertSList(&L, m, n);
 	printSList(L);
 }
-
+*/
 
 //实验4_链表的合并
 /*
