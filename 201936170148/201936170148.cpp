@@ -5,13 +5,15 @@
 #include<stdlib.h>
 
 
+//实验5_栈的应用
+/*
 #define MAX_SIZE 50
 typedef struct SqStack {
 	int* top;
 	int* base;
 	int stackSize;
 }SqStack;
-
+//初始化栈
 void initStack(SqStack& S) {
 	S.base = (int*)malloc(MAX_SIZE * sizeof(int));
 	if (!S.base) {
@@ -21,14 +23,14 @@ void initStack(SqStack& S) {
 	S.top = S.base;
 	S.stackSize = MAX_SIZE;
 }
-
+//栈是否为空
 bool emptyStack(SqStack& S) {
 	if (S.top == S.base) {
 		return true;
 	}
 	return false;
 }
-
+//入栈
 void pushStack(SqStack& S, int e) {
 	if (emptyStack(S)) {
 		*S.base = e;
@@ -43,48 +45,45 @@ void pushStack(SqStack& S, int e) {
 		S.top++;
 	}
 }
-
+//出栈
 void popStack(SqStack& S, int& e) {
 	if (S.top != S.base) {
 		e = *--S.top;
 	}
 }
-
-void printStack(SqStack& S) {
-	if (S.top == S.base) {
-		printf("空栈");
-		exit(1);
-	}
-	while (S.top != S.base) {
-		printf("%d ", *S.base);
-		S.base++;
-	}
-
-}
-
+//进制转换
 void conversion(SqStack& S, int e) {
-	int n;
-	printf("请输入十进制数：");
-	scanf("%d", &n);
+	int n, index;
+	printf("请输入要转换的数以及转换的进制数：");
+	scanf("%d %d", &n,&index);
+	//转换算法
 	while (n) {
-		pushStack(S, n % 2);
-		n = n / 2;
+		pushStack(S, n % index);
+		n = n / index;
 	}
 	while (!emptyStack(S)) {
+		//顺序出栈
 		popStack(S, e);
-		printf("%d", e);
+		//判断十进制以上情况
+		if (index >= 10 && e >= 10) {
+			printf("%c", (char)(e + 55));
+		}
+		else {
+			printf("%d", e);
+		}
 	}
+	//打印后缀
+	if (index == 2) printf("B");
+	if (index == 8) printf("O");
+	if (index == 16) printf("H");
 }
-
-int main(int argc, char** argv) {
+int main() {
 	SqStack S;
-	int e;
+	int e=0;
 	initStack(S);
 	conversion(S, e);
-
-	return 0;
 }
-
+*/
 
 //实验4_链表的交换
 /*
