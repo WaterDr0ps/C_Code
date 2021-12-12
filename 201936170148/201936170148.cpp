@@ -4,6 +4,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//
+
 
 //实验5_栈的应用
 /*
