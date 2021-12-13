@@ -4,8 +4,73 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//
+//实验6_循环队列
+/*
+#define MAX_SIZE 7
+typedef struct SqQueue {
+	int* elem;
+	int front;
+	int tail;
+}SqQueue;
+//初始化队列 
+void initQueue(SqQueue& Q) {
+	Q.elem = (int*)malloc(MAX_SIZE * sizeof(int));
+	Q.front = 0;
+	Q.tail = 0;
+}
+//入队列 
+void enQueue(SqQueue& Q, int x) {
+	//循环队列需要通过模运算实现循环效果 
+	if ((Q.tail + 1) % MAX_SIZE == Q.front) {
+		printf("满队列");
+		exit(1);
+	}
+	Q.elem[Q.tail] = x;
+	//tail+1，在tail小于7时，模运算是自己本身。
+	//在tail大于7时，模运算会重置到1，从而实现循环。 
+	Q.tail = (Q.tail + 1) % MAX_SIZE;
+}
+//出队列 
+void deQueue(SqQueue& Q) {
+	//tail=front为空队列，不做判断 
+	if (Q.tail != Q.front) {
+		Q.front = (Q.front + 1) % MAX_SIZE;
+	}
+}
+//打印队列 
+void printQueue(SqQueue& Q) {
+	//为不改变front和tail位置，用cur代替front 
+	int cur = Q.front;
+	//空队列打印 
+	if (cur == Q.tail) {
+		printf("空队列！");
+		exit(1);
+	}
+	//循环判断cur是否到tail了，到了即为打印完成 
+	while (cur != Q.tail) {
+		printf("%d ", Q.elem[cur]);
+		cur = (cur + 1) % MAX_SIZE;
+	}
+}
 
+int main(int argc, char** argv) {
+	SqQueue Q;
+	initQueue(Q);
+	enQueue(Q, 7);
+	enQueue(Q, 5);
+	enQueue(Q, 3);
+	enQueue(Q, 9);
+	enQueue(Q, 2);
+	enQueue(Q, 4);
+	deQueue(Q);
+	deQueue(Q);
+	deQueue(Q);
+	enQueue(Q, 15);
+	enQueue(Q, 18);
+	printQueue(Q);
+	return 0;
+}
+*/
 
 //实验5_栈的应用
 /*
