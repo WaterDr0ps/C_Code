@@ -4,9 +4,54 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//实验7_字符串的匹配
+/*
+#include <stdio.h>
+#include<string.h>
+//BF算法 
+int BruteForce(int pos, char S[], char T[]) {
+	int i = pos;
+	int j = 1;
+	//设定循环终止条件，超过主串S则匹配失败，超过匹配串T则匹配成功 
+	while (i <= S[0] && j <= T[0]) {
+		if (S[i] == T[j]) {
+			//匹配成功i和j同时前移 
+			i++;
+			j++;
+		}
+		else {
+			//否则i和j要同时返回，i返回到原来的下一位，j返回到原点 
+			i = i - j + 2;
+			j = 1;
+		}
+	}
+	//若j超出了字符串长度，则说明匹配成功返回i-T[0]即为pos位置 
+	if (j > T[0]) {
+		return i - T[0];
+	}
+	else {
+		return 0;
+	}
+}
 
-
-
+int main(int argc, char** argv) {
+	char S[] = " 000000000000000000001";
+	char T[] = " 00001";
+	int pos;
+	printf("请输入从第几位开始：");
+	scanf("%d", &pos);
+	T[0] = strlen(T) - 1;
+	S[0] = strlen(S) - 1;
+	pos = BruteForce(pos, S, T);
+	if (pos != 0) {
+		printf("在第%d位找到了！", pos);
+	}
+	else {
+		printf("不存在！");
+	}
+	return 0;
+}
+*/
 
 //实验6_循环队列
 /*
