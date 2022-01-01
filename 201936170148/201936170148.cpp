@@ -3,7 +3,118 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
-   
+
+
+#define MAXSIZE 10
+typedef char BDataType;
+typedef struct BiTNode//定义树的一个节点
+{
+	struct BiTNode* lchild;
+	struct BiTNode* rchild;
+	BDataType data;
+}BiTNode;
+
+typedef BiTNode* SDataType;
+typedef struct SqStack//定义栈
+{
+	SDataType* base;
+	int maxSize;//总容量大小
+	int top;//当前元素大小
+}SqStack;
+//栈的初始化
+void initStack(SqStack* S)
+{
+	S->base = (SDataType*)malloc(sizeof(SDataType) * MAXSIZE);
+	S->maxSize = MAXSIZE;
+	S->top = 0;
+}
+//入栈
+void pushStack(SqStack* S, SDataType e)
+{
+	if (S->top == S->maxSize)//空间已满，需要扩容
+	{
+		S->base = (SDataType*)realloc(S->base, sizeof(SDataType) * (2 * S->maxSize));
+		S->maxSize = 2 * S->maxSize;
+	}
+	S->base[S->top] = e;
+	S->top++;
+}
+//出栈
+void popStack(SqStack* S)
+{
+	if (S->top == 0)
+	{
+		printf("栈以为空，不能出栈!!!\n");
+	}
+	S->top--;
+}
+//获取栈顶元素
+SDataType topStack(SqStack* S)
+{
+	return S->base[S->top - 1];
+}
+//判断栈是否为空
+int emptyStack(SqStack* S)
+{
+	if (S->top == 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+//创建一个树
+BiTNode* createTree(BDataType* array, int* pos)
+{
+	if (array[*pos] != '#')
+	{
+		BiTNode* newNode = (BiTNode*)malloc(sizeof(BiTNode));
+		newNode->data = array[*pos];
+		(*pos)++;
+		newNode->lchild = createTree(array, pos);
+		(*pos)++;
+		newNode->rchild = createTree(array, pos);
+		return newNode;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+//中序遍历
+void inOrderTraversal(BiTNode* B)//中序遍历非递归
+{
+	printf("中序遍历: ");
+	SqStack S;
+	initStack(&S);
+	BiTNode* cur = B;
+	BiTNode* top;
+	while (cur || emptyStack(&S) != 1)
+	{
+		while (cur)
+		{
+			pushStack(&S, cur);
+			cur = cur->lchild;
+		}
+		top = topStack(&S);
+		popStack(&S);
+		printf("%c ", top->data);
+		cur = top->rchild;
+	}
+	printf("\n");
+}
+
+int main()
+{
+	BDataType array[100];//定义一个char数组
+	scanf("%s", array);
+	int pos = 0;
+	BiTNode* B = createTree(array, &pos);
+	inOrderTraversal(B);//中序遍历
+}
+
+
+
+
 //实验7_字符串的匹配
 /*
 #include <stdio.h>
@@ -55,7 +166,7 @@ int main(int argc, char** argv) {
 
 //实验6_循环队列
 /*
-#define MAX_SIZE 7
+#define MAXsize 7
 typedef struct SqQueue {
 	int* elem;
 	int front;
@@ -63,27 +174,27 @@ typedef struct SqQueue {
 }SqQueue;
 //初始化队列 
 void initQueue(SqQueue& Q) {
-	Q.elem = (int*)malloc(MAX_SIZE * sizeof(int));
+	Q.elem = (int*)malloc(MAXsize * sizeof(int));
 	Q.front = 0;
 	Q.tail = 0;
 }
 //入队列 
 void enQueue(SqQueue& Q, int x) {
 	//循环队列需要通过模运算实现循环效果 
-	if ((Q.tail + 1) % MAX_SIZE == Q.front) {
+	if ((Q.tail + 1) % MAXsize == Q.front) {
 		printf("满队列");
 		exit(1);
 	}
 	Q.elem[Q.tail] = x;
 	//tail+1，在tail小于7时，模运算是自己本身。
 	//在tail大于7时，模运算会重置到1，从而实现循环。 
-	Q.tail = (Q.tail + 1) % MAX_SIZE;
+	Q.tail = (Q.tail + 1) % MAXsize;
 }
 //出队列 
 void deQueue(SqQueue& Q) {
 	//tail=front为空队列，不做判断 
 	if (Q.tail != Q.front) {
-		Q.front = (Q.front + 1) % MAX_SIZE;
+		Q.front = (Q.front + 1) % MAXsize;
 	}
 }
 //打印队列 
@@ -98,7 +209,7 @@ void printQueue(SqQueue& Q) {
 	//循环判断cur是否到tail了，到了即为打印完成 
 	while (cur != Q.tail) {
 		printf("%d ", Q.elem[cur]);
-		cur = (cur + 1) % MAX_SIZE;
+		cur = (cur + 1) % MAXsize;
 	}
 }
 
@@ -123,36 +234,36 @@ int main(int argc, char** argv) {
 
 //实验5_栈的应用
 /*
-#define MAX_SIZE 50
-typedef struct SqStack {
+#define MAXsize 50
+typedef struct SqSqStack {
 	int* top;
 	int* base;
-	int stackSize;
-}SqStack;
+	int SqStackSize;
+}SqSqStack;
 //初始化栈
-void initStack(SqStack& S) {
-	S.base = (int*)malloc(MAX_SIZE * sizeof(int));
+void initSqStack(SqSqStack& S) {
+	S.base = (int*)malloc(MAXsize * sizeof(int));
 	if (!S.base) {
 		printf("申请失败！");
 		exit(1);
 	}
 	S.top = S.base;
-	S.stackSize = MAX_SIZE;
+	S.SqStackSize = MAXsize;
 }
 //栈是否为空
-bool emptyStack(SqStack& S) {
+bool emptySqStack(SqSqStack& S) {
 	if (S.top == S.base) {
 		return true;
 	}
 	return false;
 }
 //入栈
-void pushStack(SqStack& S, int e) {
-	if (emptyStack(S)) {
+void pushSqStack(SqSqStack& S, int e) {
+	if (emptySqStack(S)) {
 		*S.base = e;
 		S.top++;
 	}
-	else if (S.top - S.base == S.stackSize) {
+	else if (S.top - S.base == S.SqStackSize) {
 		printf("满栈了");
 		exit(1);
 	}
@@ -162,24 +273,24 @@ void pushStack(SqStack& S, int e) {
 	}
 }
 //出栈
-void popStack(SqStack& S, int& e) {
+void popSqStack(SqSqStack& S, int& e) {
 	if (S.top != S.base) {
 		e = *--S.top;
 	}
 }
 //进制转换
-void conversion(SqStack& S, int e) {
+void conversion(SqSqStack& S, int e) {
 	int n, index;
 	printf("请输入要转换的数以及转换的进制数：");
 	scanf("%d %d", &n,&index);
 	//转换算法
 	while (n) {
-		pushStack(S, n % index);
+		pushSqStack(S, n % index);
 		n = n / index;
 	}
-	while (!emptyStack(S)) {
+	while (!emptySqStack(S)) {
 		//顺序出栈
-		popStack(S, e);
+		popSqStack(S, e);
 		//判断十进制以上情况
 		if (index >= 10 && e >= 10) {
 			printf("%c", (char)(e + 55));
@@ -194,50 +305,50 @@ void conversion(SqStack& S, int e) {
 	if (index == 16) printf("H");
 }
 int main() {
-	SqStack S;
+	SqSqStack S;
 	int e=0;
-	initStack(S);
+	initSqStack(S);
 	conversion(S, e);
 }
 */
 
 //实验4_链表的交换
 /*
-typedef struct SListNode {
+typedef struct SListBiTNode {
 	int date;
-	struct SListNode* next;
-}SListNode;
+	struct SListBiTNode* next;
+}SListBiTNode;
 //新开辟一个节点
-SListNode* buyNode(int x) {
-	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
-	if (!newNode) {
+SListBiTNode* buyBiTNode(int x) {
+	SListBiTNode* newBiTNode = (SListBiTNode*)malloc(sizeof(SListBiTNode));
+	if (!newBiTNode) {
 		printf("节点创建失败！");
 		exit(-1);
 	}
-	newNode->date = x;
-	newNode->next = NULL;
-	return newNode;
+	newBiTNode->date = x;
+	newBiTNode->next = NULL;
+	return newBiTNode;
 }
 //链表尾插
-void SListPushBack(SListNode** pphead, int x) {
-	SListNode* newNode = buyNode(x);
+void SListPushBack(SListBiTNode** pphead, int x) {
+	SListBiTNode* newBiTNode = buyBiTNode(x);
 	if (*pphead == NULL) {
-		*pphead = newNode;
+		*pphead = newBiTNode;
 	}
 	else {
-		SListNode* cur = *pphead;
+		SListBiTNode* cur = *pphead;
 		while (cur->next != NULL) {
 			cur = cur->next;
 		}
-		cur->next = newNode;
+		cur->next = newBiTNode;
 	}
 }
 //反转链表m位置节点
-void invertSList(SListNode** phead, int m, int n) {
-	SListNode* cur = *phead;
-	SListNode* pm = NULL;
-	SListNode* pn = NULL;
-	SListNode* pn_next = NULL;
+void invertSList(SListBiTNode** phead, int m, int n) {
+	SListBiTNode* cur = *phead;
+	SListBiTNode* pm = NULL;
+	SListBiTNode* pn = NULL;
+	SListBiTNode* pn_next = NULL;
 	int count = 1;//用于记录链表位置
 	while (cur->next != NULL) {
 		if (count == m) {
@@ -261,8 +372,8 @@ void invertSList(SListNode** phead, int m, int n) {
 	}
 }
 //遍历链表
-void printSList(SListNode* phead) {
-	SListNode* cur = phead;
+void printSList(SListBiTNode* phead) {
+	SListBiTNode* cur = phead;
 	while (cur != NULL) {
 		printf("%d ", cur->date);
 		cur = cur->next;
@@ -271,7 +382,7 @@ void printSList(SListNode* phead) {
 }
 
 int main() {
-	SListNode* L = NULL;
+	SListBiTNode* L = NULL;
 	for (int i = 1;i <= 10;i++) {
 		SListPushBack(&L, i);
 	}
@@ -288,48 +399,48 @@ int main() {
 
 //实验4_链表的合并
 /*
-typedef struct SListNode {
+typedef struct SListBiTNode {
 	int date;
-	struct SListNode* next;
-}SListNode;
+	struct SListBiTNode* next;
+}SListBiTNode;
 //新开辟一个节点
-SListNode* buyNode(int x) {
-	SListNode* newNode = (SListNode*)malloc(sizeof(SListNode));
-	if (!newNode) {
+SListBiTNode* buyBiTNode(int x) {
+	SListBiTNode* newBiTNode = (SListBiTNode*)malloc(sizeof(SListBiTNode));
+	if (!newBiTNode) {
 		printf("节点创建失败！");
 		exit(-1);
 	}
-	newNode->date = x;
-	newNode->next = NULL;
-	return newNode;
+	newBiTNode->date = x;
+	newBiTNode->next = NULL;
+	return newBiTNode;
 }
 //链表尾插
-void SListPushBack(SListNode** pphead, int x) {
-	SListNode* newNode = buyNode(x);
+void SListPushBack(SListBiTNode** pphead, int x) {
+	SListBiTNode* newBiTNode = buyBiTNode(x);
 	//若头指针为空，赋值。否则，照尾，赋值。
 	if (*pphead == NULL) {
-		*pphead = newNode;
+		*pphead = newBiTNode;
 	}
 	else {
-		SListNode* cur = *pphead;
+		SListBiTNode* cur = *pphead;
 		while (cur->next != NULL) {
 			cur = cur->next;
 		}
-		cur->next = newNode;
+		cur->next = newBiTNode;
 	}
 }
 //链表合并算法
-void mergeSList(SListNode* pa, SListNode* pb, SListNode** pc) {
+void mergeSList(SListBiTNode* pa, SListBiTNode* pb, SListBiTNode** pc) {
 	*pc = pa;//pc指针指向pa
-	SListNode* cur = *pc;
+	SListBiTNode* cur = *pc;
 	while (cur->next != NULL) {
 		cur = cur->next;
 	}
 	cur->next = pb;//找到表尾后链接pb
 }
 //遍历链表
-void printSList(SListNode* phead) {
-	SListNode* cur = phead;
+void printSList(SListBiTNode* phead) {
+	SListBiTNode* cur = phead;
 	while (cur != NULL) {
 		printf("%d ", cur->date);
 		cur = cur->next;
@@ -338,9 +449,9 @@ void printSList(SListNode* phead) {
 }
 
 int main(int argc, char** argv) {
-	SListNode* La = NULL;
-	SListNode* Lb = NULL;
-	SListNode* Lc = NULL;
+	SListBiTNode* La = NULL;
+	SListBiTNode* Lb = NULL;
+	SListBiTNode* Lc = NULL;
 	for (int i = 1;i <= 5;i++) {
 		SListPushBack(&La, i);
 		SListPushBack(&Lb, 2 * i);
