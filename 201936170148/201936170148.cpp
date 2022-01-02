@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-
+/**/
 #define MAXSIZE 10
 typedef char BDataType;
 typedef struct BiTNode//定义树的一个节点
