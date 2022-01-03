@@ -4,7 +4,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/**/
+
+//实验8_二叉树中序遍历
+/*
 #define MAXSIZE 10
 typedef char BDataType;
 typedef struct BiTNode//定义树的一个节点
@@ -111,9 +113,7 @@ int main()
 	BiTNode* B = createTree(array, &pos);
 	inOrderTraversal(B);//中序遍历
 }
-
-
-
+*/
 
 //实验7_字符串的匹配
 /*
