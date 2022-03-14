@@ -1,3 +1,2 @@
-﻿  Test.cpp
-C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(14,9): error C2100: 非法的间接寻址
-C:\Users\Administrator\Documents\GitHub\C_Code\test1\Test.cpp(15,17): error C2100: 非法的间接寻址
+﻿MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 main，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\Practice.exe : fatal error LNK1120: 1 个无法解析的外部命令

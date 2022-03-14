@@ -1,2 +1,4 @@
-﻿  201936170148.cpp
-  201936170148.vcxproj -> C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\201936170148.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(201936170148.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
+  201936170148.cpp
+MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 main，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\Experiment.exe : fatal error LNK1120: 1 个无法解析的外部命令
