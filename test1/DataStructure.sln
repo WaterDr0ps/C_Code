@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuist_2", "nuist_2", "{0737
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Experiment", "Experiment\Experiment.vcxproj", "{CBF92FF3-7922-40A4-A39B-73079677317C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice", "Practice\Practice.vcxproj", "{6329E63E-B22C-4897-9F95-592EEF4CDD16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -45,6 +47,14 @@ Global
 		{CBF92FF3-7922-40A4-A39B-73079677317C}.Release|x64.Build.0 = Release|x64
 		{CBF92FF3-7922-40A4-A39B-73079677317C}.Release|x86.ActiveCfg = Release|Win32
 		{CBF92FF3-7922-40A4-A39B-73079677317C}.Release|x86.Build.0 = Release|Win32
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Debug|x64.ActiveCfg = Debug|x64
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Debug|x64.Build.0 = Debug|x64
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Debug|x86.ActiveCfg = Debug|Win32
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Debug|x86.Build.0 = Debug|Win32
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Release|x64.ActiveCfg = Release|x64
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Release|x64.Build.0 = Release|x64
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Release|x86.ActiveCfg = Release|Win32
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +63,7 @@ Global
 		{EBB35C5D-1B07-4F22-8545-D96CDE3C3333} = {E3884F48-A853-4F8E-B6CF-3D0B116DC8E1}
 		{656D01E4-A1D5-4CF6-A6AB-6803A0A4B162} = {E3884F48-A853-4F8E-B6CF-3D0B116DC8E1}
 		{CBF92FF3-7922-40A4-A39B-73079677317C} = {07377628-BA6C-4C87-A0D4-BE2DB280A7B9}
+		{6329E63E-B22C-4897-9F95-592EEF4CDD16} = {07377628-BA6C-4C87-A0D4-BE2DB280A7B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D882EB44-B631-4251-A8B1-D40408BCE60F}
