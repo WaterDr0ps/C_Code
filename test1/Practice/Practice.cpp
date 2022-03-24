@@ -45,7 +45,6 @@ public:
 		strcpy(ID, p.ID);
 	}
 	void input(){
-		cout << "录入数据：" << endl;
 		cin >> number >> sex >> ID;
 		birthday.set();
 		
