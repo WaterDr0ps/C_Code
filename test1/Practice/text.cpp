@@ -1,17 +1,15 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-class CE {
+class Circle {
 private:
-	int a, b;
-	int getmin() { return (a < b ? a : b); }
+	float Radius;
 public:
-	int c;
-	void SetValue(int x1, int x2, int x3) {
-		a = x1;b = x2; c = x3;
-	};
-	int GetMin();
+	Circle(float r):Radius(r){}
+	float GetArea() {
+		return 3.14 * Radius * Radius;
+	}
 };
-int GetMin() { //´íÎó
-	int d = getmin();
-	return (d < c ? d : c);
+int main() {
+	Circle c(10);
+	cout<<c.GetArea();
 }
