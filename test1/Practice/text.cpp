@@ -11,5 +11,5 @@ public:
 };
 int main() {
 	Circle c(10);
-	cout<<c.GetArea();
+	cout<<c.GetArea() ;
 }
