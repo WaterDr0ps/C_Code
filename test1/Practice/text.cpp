@@ -1,15 +1,18 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Circle {
-private:
-	float Radius;
+class XA {
+	int a;
 public:
-	Circle(float r):Radius(r){}
-	float GetArea() {
-		return 3.14 * Radius * Radius;
-	}
+	static int b;
+	XA(int aa) :a(aa) { b++; }
+	~XA() {}
+	int get() { return a; }
 };
+int XA::b = 0;
 int main() {
-	Circle c(10);
-	cout<<c.GetArea()  ;
+	XA d1(2), d2(3);
+	cout << d1.b << endl;
+	cout << XA::b << endl;
+
+	return 0;
 }

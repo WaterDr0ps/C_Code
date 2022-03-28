@@ -1,3 +1,2 @@
 ﻿  text.cpp
-C:\Users\Administrator\Documents\GitHub\C_Code\test1\Practice\text.cpp(9,24): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
   Practice.vcxproj -> C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\Practice.exe
