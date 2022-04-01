@@ -14,5 +14,5 @@ int main() {
 	cout << d1.b << endl;
 	cout << XA::b << endl;
 
-	return 0;
+	return  0;
 }
