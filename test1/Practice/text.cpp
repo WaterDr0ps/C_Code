@@ -1,18 +1,23 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-class XA {
-	int a;
+class R {
 public:
-	static int b;
-	XA(int aa) :a(aa) { b++; }
-	~XA() {}
-	int get() { return a; }
+	R(int r1, int r2) : r1(r1), r2(r2) { }
+	void print();
+	void print() const;
+private:
+	int r1, r2;
 };
-int XA::b = 0;
+void R::print() {
+	cout << r1 << ":" << r2 << endl;
+}
+void R::print() const {
+	cout << r1 << ";" << r2 << endl;
+}
 int main() {
-	XA d1(2), d2(3);
-	cout << d1.b << endl;
-	cout << XA::b << endl;
-
-	return    0;
+	R a(5, 4);
+	a.print();
+	const R b(20, 52);
+	b.print();
+	return 0;
 }
