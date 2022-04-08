@@ -1,23 +1,16 @@
-#include<iostream>
-using namespace std;
-class R {
-public:
-	R(int r1, int r2) : r1(r1), r2(r2) { }
-	void print();
-	void print() const;
-private:
-	int r1, r2;
-};
-void R::print() {
-	cout << r1 << ":" << r2 << endl;
+
+
+#include "text.h"
+void main()
+{
+X x;
+Z z;
+z.f(&x);
 }
-void R::print() const {
-	cout << r1 << ";" << r2 << endl;
-}
-int main() {
-	R a(5, 4);
-	a.print();
-	const R b(20, 52);
-	b.print();
-	return 0;
-}
+/*
+定义类X、Y、Z，函数h(X*)，满足：类X有私有成员i（int），Y的成员函数void g(X*)是X的友元函数，实现对X的成员i加1，
+类Z是类X的友元类，其成员函数void f(X*)实现对X的成员i加5，函数void h(X*)是X的友元函数，实现对X的成员i加10。
+在一个文件中定义和实现类，在另一个文件中实现main()函数。
+*/
+
+

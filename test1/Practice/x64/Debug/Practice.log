@@ -1,2 +1,3 @@
 ﻿  text.cpp
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Practice\text.cpp(5,1): warning C4326: “main”的返回类型应为“int”而非“void”
   Practice.vcxproj -> C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\Practice.exe
