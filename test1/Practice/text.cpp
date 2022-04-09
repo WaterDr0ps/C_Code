@@ -1,16 +1,27 @@
-
-
-#include "text.h"
+#include <iostream>
+using namespace std;
+class Box {
+	int width, length;
+public:
+	void const show();
+	Box(int, int);
+	int volume();
+	static int height; //将height定义为静态整形数据成员
+};
+//在类体外定义构造函数，宽度width和
+//长度length的缺省值均为10
+Box::Box(int w=10,int len=10)
+{
+	width = w;length = len;
+}
+int Box::volume()
+{
+	return (height * width * length);
+}
+int Box::height = 10;
 void main()
 {
-X x;
-Z z;
-z.f(&x);
+	Box a(15, 20);
+	cout << a.height << endl; //输出对象a的高度height
+	cout << Box::height << endl; //用另一种方式输出对象a的高度height
 }
-/*
-定义类X、Y、Z，函数h(X*)，满足：类X有私有成员i（int），Y的成员函数void g(X*)是X的友元函数，实现对X的成员i加1，
-类Z是类X的友元类，其成员函数void f(X*)实现对X的成员i加5，函数void h(X*)是X的友元函数，实现对X的成员i加10。
-在一个文件中定义和实现类，在另一个文件中实现main()函数。
-*/
-
-
