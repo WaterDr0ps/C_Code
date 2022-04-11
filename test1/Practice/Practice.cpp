@@ -10,7 +10,7 @@ private:
 	int month;
 	int day;
 public:
-	Date() {}
+	Date(){}
 	Date(int y, int m, int d) {
 		year = y;
 		month = m;

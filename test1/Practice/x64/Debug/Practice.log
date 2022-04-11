@@ -1,3 +1,4 @@
-﻿  text.cpp
-C:\Users\Administrator\Documents\GitHub\C_Code\test1\Practice\text.cpp(5,1): warning C4326: “main”的返回类型应为“int”而非“void”
+﻿  4.11.cpp
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Practice\4.11.cpp(119,1): warning C4326: “main”的返回类型应为“int”而非“void”
+C:\Users\Administrator\Documents\GitHub\C_Code\test1\Practice\4.11.cpp(120,35): warning C4305: “参数”: 从“double”到“float”截断
   Practice.vcxproj -> C:\Users\Administrator\Documents\GitHub\C_Code\test1\x64\Debug\Practice.exe
