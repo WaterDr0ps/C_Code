@@ -117,6 +117,6 @@ public:
 
 void main()
 {
-	Computer c(P6, 300, 2.8, 200, 700);
+	Computer c(P6, 300, 2.8, 200, 700 );
 	c.output()   ;
 }
