@@ -111,7 +111,7 @@ public:
 	{
 		cout << "学号：" << number << "  性别： " << sex << "  身份证号： " << ID;
 		birthday.output();
-	}
+	} 
 	~People() { cout << "析构函数调用" << endl; }
 };
 
